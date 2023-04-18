@@ -1,3 +1,4 @@
+import time
 import json
 import requests
 from rest_framework.views import APIView
@@ -30,7 +31,7 @@ class FetchBettDetailsApiView(APIView):
     def get(self,*args,**kwargs):
         """Method To Handle Get request"""
 
-        sports = ['MLB', 'CPB', 'tennis']
+        sports = ['MLB', 'CPB', 'TNS', 'FTB']
         game_date = '2023-04-18' # 請更改至一個月內的日期
         access_token = 'FREE_20_TIMES_PRE_DAY_FOR_TEST_ONLY'
         endpoint = 'https://api.sportsbot.tech/odds_movements'
@@ -41,7 +42,7 @@ class FetchBettDetailsApiView(APIView):
             response = requests.get(url, params=params)
             result = json.loads(response.text)
             results.update({f"{sport}" : result})
-
+            time.sleep(5)
         return Response(results)
 
 
