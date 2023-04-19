@@ -34,7 +34,7 @@ class LogOutUserAPiView(APIView):
 class FetchBettDetailsApiView(APIView):
     """Viewset For fetching and storing sports Bets"""
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def get(self,*args,**kwargs):
         """Method To Handle Get request"""
