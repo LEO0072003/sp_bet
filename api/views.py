@@ -3,8 +3,6 @@ import json
 import requests
 from rest_framework.views import APIView
 from rest_framework import status
-from rest_framework.decorators import api_view
-from django.shortcuts import render
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.contrib.auth import get_user_model
 from rest_framework import generics
@@ -22,9 +20,19 @@ class RegisterUserApiView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
 
 
+class LogOutUserAPiView(APIView):
+    """Viweset for logging out user"""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        print(request.data, args,kwargs)
+        return Response(status=status.HTTP_200_OK)
+
+
 
 class FetchBettDetailsApiView(APIView):
-    """Viewset For fetching and storing sports Bets """
+    """Viewset For fetching and storing sports Bets"""
 
     permission_classes = [IsAuthenticated]
 
